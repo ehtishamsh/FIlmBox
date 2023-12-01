@@ -1,17 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import Hero from "./Hero";
 import TopContent from "./TopContent";
 
 function Home() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
+    <div className="relative">
       <Header />
       <Hero />
       <TopContent />
-    </>
+    </div>
   );
 }
 
