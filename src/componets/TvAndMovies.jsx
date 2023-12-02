@@ -1,18 +1,15 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import Header from "./Header";
 import Hero from "./Hero";
 import TopContent from "./TopContent";
-import Footer from "./Footer";
 
-function Home() {
+export default function () {
   return (
-    <div className="relative">
+    <div>
+      <h2 className="text-7xl bg-red-600">Hello the is the movies page</h2>
       <Header />
       <Hero />
       <TopContent />
-      <Footer />
     </div>
   );
 }
-
-export default Home;
