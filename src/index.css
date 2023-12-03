@@ -7,3 +7,24 @@
     font-family: "Poppins", sans-serif;
   }
 }
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(2, 6, 23, 0.875);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #dedede;
+  transition: background 0.3s ease;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #acacac;
+}

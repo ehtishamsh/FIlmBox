@@ -3,8 +3,8 @@ import Cards from "./Cards";
 
 function TopContent() {
   return (
-    <div className="mt-12 px-28 flex flex-col max-sm:px-10 max-md:px-10">
-      <div className="flex items-center mb-8 gap-5 max-sm:flex-col  max-md:flex-col ">
+    <div className="mt-8 px-28 flex flex-col max-sm:px-10 max-md:px-10 max-lg:px-16 py-6 bg-gradient-to-t from-[rgba(2,6,23,1)] via-[#040c2c] to-[rgba(2,6,23,1)]">
+      <div className="flex items-center mb-8 gap-5 max-sm:flex-col  max-md:flex-col">
         <h1 className="text-3xl font-bold text-slate-200 max-sm:text-xl  max-md:text-2xl">
           Recommended
         </h1>
@@ -20,11 +20,7 @@ function TopContent() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-[repeat(_4,auto)] pb-28 justify-between gap-y-7 max-md:grid-cols-[repeat(_3,auto)] max-sm:grid-cols-[repeat(_2,auto)] ">
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
+      <div className="grid grid-cols-[repeat(_4,auto)] pb-5 justify-between gap-y-7 max-xxsm:gap-x-[4px] max-md:grid-cols-[repeat(_3,auto)] max-sm:grid-cols-[repeat(_2,auto)] ">
         <Cards />
         <Cards />
         <Cards />

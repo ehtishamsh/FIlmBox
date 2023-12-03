@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Cards({ id }) {
+function Cards() {
+  const randomNum = Math.floor(Math.random() * 10000 + 1);
   return (
-    <Link to={`/singles/${id}`}>
-      <div className="flex flex-col relative gap-5 px-2 pt-2 pb-4 w-72 rounded-xl bg-slate-800 bg-opacity-50 max-sm:w-56 max-lg:w-64 max-xxm:w-[160px] max-sm:gap-2">
+    <Link
+      to={`/singles/${randomNum}`}
+      className="flex justify-center items-center"
+    >
+      <div className="flex flex-col relative gap-5 px-2 pt-2 pb-4 rounded-xl bg-[rgba(146,146,146,0.12)] w-11/12 max-xxsm:w-full max-xl:pb-2 backdrop-blur-sm">
         <div className="flex  items-center z-50 absolute top-0 left-0 py-1 px-2 mx-[18px] mt-[16px] bg-[rgba(0,0,0,0.65)] rounded-lg gap-1 backdrop-blur-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +34,7 @@ function Cards({ id }) {
             className="object-contain bg-cover object-center hover:transform hover:scale-110 transition-all duration-500"
           />
         </div>
-        <h1 className="text-base text-slate-200 font-bold p-2 max-sm:text-sm max-xxm:text-xs">
+        <h1 className="text-base text-slate-200 font-bold p-2 max-xl:p-1  max-xl:text-sm max-sm:text-sm max-xxm:text-xs">
           Avengers the Endgame
         </h1>
       </div>

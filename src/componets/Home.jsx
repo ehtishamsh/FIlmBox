@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
-import Header from "./Header";
 import Hero from "./Hero";
-import TopContent from "./TopContent";
-import Footer from "./Footer";
+import TopContent from "./Trending";
+import Popular from "./Popular";
 
 function Home() {
   return (
-    <div className="relative">
-      <Header />
+    <>
       <Hero />
       <TopContent />
-      <Footer />
-    </div>
+      <Popular />
+    </>
   );
 }
 

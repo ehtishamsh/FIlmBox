@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "gradient-radial":
+          "radial-gradient(circle 490px,var(--tw-gradient-stops))",
+      },
       screens: {
         xxm: "570px",
         xxsm: "400px",
