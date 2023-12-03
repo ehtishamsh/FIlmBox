@@ -5,7 +5,7 @@ export default {
     extend: {
       backgroundImage: {
         "gradient-radial":
-          "radial-gradient(circle 490px,var(--tw-gradient-stops))",
+          "radial-gradient(circle 450px,var(--tw-gradient-stops))",
       },
       screens: {
         xxm: "570px",
