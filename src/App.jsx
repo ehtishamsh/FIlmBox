@@ -4,8 +4,9 @@ import Home from "./componets/Home";
 import Axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TvAndMovies from "./componets/TvAndMovies";
-import Single from "./componets/Single";
+import Single from "./componets/Details";
 import Layout from "./Layout";
+import Details from "./componets/Details";
 
 function App() {
   const [data, setData] = useState("");
@@ -15,13 +16,13 @@ function App() {
   console.log(data);
 
   return (
-    <div className="w-full bg-slate-950  box-border relative">
+    <div className="w-full bg-slate-950">
       <Router>
         <Routes>
           <Route path="" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="movies" element={<TvAndMovies />} />
-            <Route path="singles/:id" element={<Single />} />
+            <Route path="details/:id" element={<Details />} />
           </Route>
         </Routes>
       </Router>

@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Footer() {
   return (
-    <div className="w-full flex flex-col mt-24 justify-center items-center p-20 max-xxsm:p-10 bg-indigo-950 max-xxsm:flex-col object-contain bg-cover ">
+    <div className="w-full flex flex-col justify-center items-center p-20 max-xxsm:p-10 bg-indigo-950 max-xxsm:flex-col object-contain bg-cover ">
       <div className="flex gap-5 mb-7 text-slate-200 text-base max-xxsm:text-xs max-xxsm:gap-2 max-xxsm:flex-wrap justify-center items-center ">
         <h2>Terms of Conditions</h2>
         <h2>Privacy Policy</h2>

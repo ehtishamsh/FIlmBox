@@ -5,7 +5,7 @@ function Cards() {
   const randomNum = Math.floor(Math.random() * 10000 + 1);
   return (
     <Link
-      to={`/singles/${randomNum}`}
+      to={`details/${randomNum}`}
       className="flex justify-center items-center"
     >
       <div className="flex flex-col relative gap-5 px-2 pt-2 pb-4 rounded-xl bg-[rgba(146,146,146,0.12)] w-11/12 max-xxsm:w-full max-xl:pb-2 backdrop-blur-sm">

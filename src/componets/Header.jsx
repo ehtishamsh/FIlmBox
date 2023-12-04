@@ -8,7 +8,7 @@ function Header() {
         scroll === "down" ? "-top-24" : "top-0"
       }`}
     >
-      <nav className="flex justify-between items-center bg-transparent absolute py-5 px-28 max-sm:px-8 max-lg:px-16 bg-gradient-to-r from-slate-950 via-transparent to-slate-950  w-full ">
+      <nav className="flex justify-between items-center bg-transparent backdrop-blur-sm absolute py-5 px-28 max-sm:px-8 max-lg:px-16 bg-gradient-to-r from-slate-950 via-transparent to-slate-950  w-full ">
         <img src="/logoWIthText.png" alt="" className="h-12 max-sm:h-10" />
         <div className="flex gap-4 text-slate-400 font-semibold max-sm:hidden">
           <NavLink

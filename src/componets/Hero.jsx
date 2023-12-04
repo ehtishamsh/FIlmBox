@@ -25,11 +25,11 @@ export default function Hero() {
           </button>
         </form>
       </div>
-      <div className="relative w-[60%] h-full  max-sm:w-full max-md:w-full overflow-hidden max-sm:absolute max-sm:top-0 max-sm:left-0 max-md:absolute max-md:top-0 max-md:left-0 z-30 ">
+      <div className="relative w-[60%] h-full   max-sm:w-full max-md:w-full  overflow-hidden max-sm:absolute max-sm:top-0 max-sm:left-0 max-md:absolute max-md:top-0 max-md:left-0 z-30 ">
         <img
           src="/heroImg.jpg"
           alt=""
-          className="w-full h-full select-none object-cover object-center relative z-10 max-sm:opacity-50 max-md:opacity-50"
+          className="w-full h-full select-none object-cover object-center relative  max-sm:opacity-50 max-md:opacity-50 z-10"
         />
         <div className="absolute top-0 z-20 right-0 bottom-0 left-0 w-full   bg-gradient-radial  from-transparent via-transparent to-slate-950">
           <div className="absolute top-0 z-20 right-0 bottom-0 left-0 w-full   bg-gradient-to-b  from-slate-950 via-transparent to-slate-950"></div>
