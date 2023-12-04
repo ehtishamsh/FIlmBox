@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Cards() {
-  const randomNum = Math.floor(Math.random() * 10000 + 1);
+function Cards({ type, id, rating, imgUrl, title }) {
   return (
     <Link
-      to={`movies/${randomNum}`}
-      className="flex justify-center items-center"
+      to={`${type}/${id}`}
+      className="flex justify-center items-center h-full"
     >
-      <div className="flex flex-col relative gap-5 px-2 pt-2 pb-4 rounded-xl bg-[rgba(146,146,146,0.12)] w-11/12 max-xxsm:w-full max-xl:pb-2 backdrop-blur-sm">
+      <div className="flex flex-col relative gap-5 px-2 pt-2 pb-4 rounded-xl h-full bg-[rgba(146,146,146,0.12)] w-11/12 max-xxsm:w-full max-xl:pb-2 backdrop-blur-sm">
         <div className="flex  items-center z-50 absolute top-0 left-0 py-1 px-2 mx-[18px] mt-[16px] bg-[rgba(0,0,0,0.65)] rounded-lg gap-1 backdrop-blur-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -25,17 +24,17 @@ function Cards() {
               strokeLinejoin="round"
             />
           </svg>
-          <p className="text-yellow-400 text-base">7.1</p>
+          <p className="text-yellow-400 text-base">{rating}</p>
         </div>
-        <div className="overflow-hidden rounded-lg">
+        <div className="overflow-hidden rounded-lg h-full">
           <img
-            src="https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg"
+            src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
             alt=""
-            className="object-contain bg-cover object-center hover:transform hover:scale-110 transition-all duration-500"
+            className="object-cover bg-cover object-center h-full hover:transform hover:scale-110 transition-all duration-500"
           />
         </div>
         <h1 className="text-base text-slate-200 font-bold p-2 max-xl:p-1  max-xl:text-sm max-sm:text-sm max-xxm:text-xs">
-          Avengers the Endgame
+          {title}
         </h1>
       </div>
     </Link>

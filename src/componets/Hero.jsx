@@ -1,4 +1,5 @@
 import React from "react";
+import SearchInput from "./SearchInput";
 
 export default function Hero() {
   return (
@@ -12,18 +13,7 @@ export default function Hero() {
           Explore what I have watched and also feel free to make a suggestion.
           😉
         </p>
-        <form
-          action=""
-          className="flex items-center justify-center mt-11 max-sm:mt-8 max-md:mt-8 relative w-full"
-        >
-          <input
-            type="text"
-            className="w-full bg-inherit focus:outline-indigo-600 focus:outline-4 focus:border-transparent outline-none pr-4 pl-14 py-4 border transition-all duration-300 border-solid border-slate-600 rounded-xl  "
-          />
-          <button className="absolute left-0 ml-4">
-            <img src="/search-normal.png" className="" alt="" />
-          </button>
-        </form>
+        <SearchInput />
       </div>
       <div className="relative w-[60%] h-full   max-sm:w-full max-md:w-full  overflow-hidden max-sm:absolute max-sm:top-0 max-sm:left-0 max-md:absolute max-md:top-0 max-md:left-0 z-30 ">
         <img

@@ -1,5 +1,5 @@
 import useScrollDirection from "./Hooks";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 function Header() {
   const scroll = useScrollDirection();
   return (
@@ -9,7 +9,9 @@ function Header() {
       }`}
     >
       <nav className="flex justify-between items-center bg-transparent backdrop-blur-sm absolute py-5 px-28 max-sm:px-8 max-lg:px-16 bg-gradient-to-r from-slate-950 via-transparent to-slate-950  w-full ">
-        <img src="/logoWIthText.png" alt="" className="h-12 max-sm:h-10" />
+        <Link to="/">
+          <img src="/logoWIthText.png" alt="" className="h-12 max-sm:h-10" />
+        </Link>
         <div className="flex gap-4 text-slate-400 font-semibold max-sm:hidden">
           <NavLink
             to=""

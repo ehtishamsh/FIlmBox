@@ -9,12 +9,6 @@ import Layout from "./Layout";
 import Details from "./componets/Details";
 
 function App() {
-  const [data, setData] = useState("");
-  useEffect(() => {
-    Axios.get("https://catfact.ninja/fact").then((res) => setData(res.data));
-  }, []);
-  console.log(data);
-
   return (
     <div className="w-full bg-slate-950">
       <Router>
