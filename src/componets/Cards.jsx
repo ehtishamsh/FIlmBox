@@ -24,7 +24,7 @@ function Cards({ type, id, rating, imgUrl, title }) {
               strokeLinejoin="round"
             />
           </svg>
-          <p className="text-yellow-400 text-base">{rating}</p>
+          <p className="text-yellow-400 text-base">{rating.toFixed(1)}</p>
         </div>
         <div className="overflow-hidden rounded-lg  w-full">
           <img

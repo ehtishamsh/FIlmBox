@@ -66,7 +66,9 @@ export default function Details() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p className="text-yellow-400">{data && data.vote_average}</p>
+              <p className="text-yellow-400">
+                {data && data.vote_average.toFixed(1)}
+              </p>
             </div>
           </div>
           <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
