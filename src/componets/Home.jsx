@@ -5,10 +5,27 @@ import axios from "axios";
 import details from "./MovieServices";
 
 function Home() {
-  const endpoints = details();
+  const [recommended, setRecommended] = useState("all");
+  const endpoints = details(0, recommended);
+  function handleClick(event) {
+    setRecommended(event.target.name);
+  }
   const [isLoading, setIsLoading] = useState(true);
+
+  const [trendData, setTrendData] = useState([]);
   const [data, setData] = useState([]);
   useEffect(() => {
+    setIsLoading(true);
+    setTimeout(async () => {
+      const fetchData = await axios.get(endpoints.trending);
+      const getData = await fetchData.data.results;
+      setTrendData(getData);
+      setIsLoading(false);
+    }, 5000);
+  }, [recommended]);
+  console.log(trendData);
+  useEffect(() => {
+    setIsLoading(true);
     setTimeout(async () => {
       const fetchData = await axios.get(endpoints.popular);
       const getData = await fetchData.data.results;
@@ -16,6 +33,7 @@ function Home() {
       setIsLoading(false);
     }, 5000);
   }, []);
+
   return (
     <>
       <Hero />
@@ -24,19 +42,37 @@ function Home() {
           <h1 className="text-3xl font-bold text-slate-200 max-sm:text-xl  max-md:text-2xl">
             Recommended
           </h1>
-          <div className="flex items-center text-gray-200 rounded-xl bg-slate-900 w-fit p-2 max-xxm:text-sm">
-            <button className="px-8 py-2 rounded-lg max-sm:px-4 max-md:px-6 max-xxm:px-2">
+          <div className="flex items-center text-gray-200 rounded-xl bg-slate-900 w-fit p-2 max-xxm:text-sm transition-all duration-300">
+            <button
+              onClick={(event) => handleClick(event)}
+              name="all"
+              className={`px-8 py-2 ${
+                recommended === "all" ? "bg-indigo-500" : ""
+              } rounded-lg max-sm:px-4 max-md:px-6 max-xxm:px-2 transition-all duration-300`}
+            >
               Trending
             </button>
-            <button className="px-8 py-2 rounded-lg  max-sm:px-4 max-md:px-6 max-xxm:px-2 bg-indigo-500">
+            <button
+              onClick={handleClick}
+              name="movie"
+              className={`px-8 py-2 ${
+                recommended === "movie" ? "bg-indigo-500" : ""
+              } rounded-lg max-sm:px-4 max-md:px-6 max-xxm:px-2 transition-all duration-300`}
+            >
               Movies
             </button>
-            <button className="px-8 py-2 rounded-lg  max-sm:px-4 max-md:px-6 max-xxm:px-2">
+            <button
+              onClick={handleClick}
+              className={`px-8 py-2 ${
+                recommended === "tv" ? "bg-indigo-500" : ""
+              } rounded-lg max-sm:px-4 max-md:px-6 max-xxm:px-2 transition-all duration-300`}
+              name="tv"
+            >
               TV Shows
             </button>
           </div>
         </div>
-        <Content data={data} type={"movies"} isLoading={isLoading} />
+        <Content data={trendData} isLoading={isLoading} />
       </div>
       <div className="mt-8 px-28 flex flex-col max-sm:px-10 max-md:px-10 max-lg:px-16 py-6 bg-gradient-to-t from-[rgba(2,6,23,1)] via-[#040c2c] to-[rgba(2,6,23,1)]">
         <div className="flex items-center mb-8 gap-5 max-sm:flex-col mt-14  max-md:flex-col">
@@ -44,7 +80,7 @@ function Home() {
             Popular on Filmbox
           </h1>
         </div>
-        <Content data={data} type={"movies"} isLoading={isLoading} />
+        <Content data={data} isLoading={isLoading} />
       </div>
     </>
   );

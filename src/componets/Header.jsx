@@ -24,7 +24,7 @@ function Header() {
             Home
           </NavLink>
           <NavLink
-            to="/movies"
+            to="/movie"
             className={({ isActive }) =>
               `${
                 isActive ? "text-indigo-600 border-b-4 border-indigo-600" : ""

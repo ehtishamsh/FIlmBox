@@ -1,52 +1,63 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import details from "./MovieServices";
 
 export default function Details() {
   const { id } = useParams();
+  const loc = useLocation();
+  const [type, setType] = useState(loc.pathname.includes("tv"));
   const endpoints = details(id);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
   useEffect(() => {
     setTimeout(async () => {
-      const getFetch = await axios.get(endpoints.detailsMovie);
+      const getFetch = await axios.get(
+        type ? endpoints.detailsTV : endpoints.detailsMovie
+      );
       const getData = await getFetch.data;
       setData(getData);
       setIsLoading(false);
-    }, [5000]);
+    }, [1000]);
   }, []);
+  console.log(type);
   return (
     <div
       className="w-full h-full flex flex-col gap-8 pt-36 pb-28 bg-cover object-cover overflow-x-hidden px-28 max-lg:px-16 max-md:px-8 max-sm:px-8"
       style={{ backgroundImage: `url("/Background.png")` }}
     >
       <div className="w-full relative h-auto ">
-        <img
-          src={`https://image.tmdb.org/t/p/original/${
-            data && data.backdrop_path
-          }`}
-          alt=""
-          className="w-full object-cover rounded-[40px] opacity-70 h-[480px] max-md:h-[300px] max-sm:h-[250px]"
-        />
+        {data && (
+          <img
+            src={`https://image.tmdb.org/t/p/original/${
+              data && data.backdrop_path
+            }`}
+            alt=""
+            className="w-full object-cover rounded-[40px] opacity-70 h-[480px] max-md:h-[300px] max-sm:h-[250px]"
+          />
+        )}
         <div className="flex flex-col gap-2 absolute -bottom-16 ml-20 z-40 w-2/6   max-md:ml-0 max-sm:ml-0 max-md:rounded-lg max-sm:rounded-lg max-md:w-full max-sm:w-full max-lg:w-2/5 max-md:p-6 max-sm:p-4 p-10 bg-[rgba(2,6,28,0.31)] rounded-3xl bg-opacity-30 backdrop-blur-md">
-          <p className="text-indigo-600 text-sm">Filmbox / Movie</p>
+          <p className="text-indigo-500 text-sm">
+            Filmbox / {type ? "TV Shows" : "Movies"}
+          </p>
           <h2 className="text-slate-200 text-2xl font-bold max-md:text-lg max-sm:text-base">
-            {data && data.title}
+            {data && (data.title || data.original_name)}
           </h2>
         </div>
       </div>
       <div className="mt-28 flex justify-center max-md:flex-col max-sm:flex-col  h-[700px] max-md:h-full px-10 max-md:px-0 w-full items-center gap-20 max-md:gap-10 max-sm:gap-10">
         <div className="w-1/2 max-md:full max-sm:w-full h-full">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${data && data.poster_path}`}
-            className="object-cover h-full rounded-[35px] max-md:h-[400px]"
-            alt=""
-          />
+          {data && (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${data && data.poster_path}`}
+              className="object-cover h-full rounded-[35px] max-md:h-[400px]"
+              alt=""
+            />
+          )}
         </div>
         <div className="flex flex-col w-1/2 max-md:w-full max-md:text-base max-md:text-center gap-6 max-md:gap-2 max-sm:gap-2 h-full max-md:-order-1 text-slate-200 text-xl">
           <h1 className="text-2xl font-bold max-md:text-lg ">
-            {data && data.tagline}
+            {data && (data.title || data.original_name)}
           </h1>
           <p className="font-normal text-slate-500">{data && data.overview}</p>
           <div className="w-full max-md:flex max-md:justify-center max-md:items-center">
@@ -71,25 +82,43 @@ export default function Details() {
               </p>
             </div>
           </div>
-          <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
-            Type
-            <span className="text-slate-200 text-xl max-md:text-base">
-              Movie
-            </span>
-          </p>
+          {data && data.runtime ? (
+            <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
+              Type
+              <span className="text-slate-200 text-xl max-md:text-base">
+                Movie
+              </span>
+            </p>
+          ) : (
+            <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
+              Type
+              <span className="text-slate-200 text-xl max-md:text-base">
+                TV Show
+              </span>
+            </p>
+          )}
 
           <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
             Release Date:
             <span className="text-slate-200 text-xl max-md:text-base">
-              {data && data.release_date}
+              {data && (data.release_date || data.first_air_date)}
             </span>
           </p>
-          <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
-            Run time
-            <span className="text-slate-200 text-xl max-md:text-base">
-              {data && data.runtime} min
-            </span>
-          </p>
+          {data && data.runtime ? (
+            <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
+              Run time
+              <span className="text-slate-200 text-xl max-md:text-base">
+                {data && data.runtime} min
+              </span>
+            </p>
+          ) : (
+            <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
+              Number of Seasons
+              <span className="text-slate-200 text-xl max-md:text-base">
+                {data && data.number_of_seasons}
+              </span>
+            </p>
+          )}
           <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
             Genres
             <span className="flex gap-3">

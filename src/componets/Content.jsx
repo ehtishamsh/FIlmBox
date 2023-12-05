@@ -2,15 +2,15 @@ import React from "react";
 import Cards from "./Cards";
 import CardsSkeletons from "./Skeletons/CardSkeletons";
 
-function Content({ data, type, isLoading }) {
+function Content({ data, isLoading, type }) {
   const createCards = data.map((item) => {
     return (
       <Cards
         key={item.id}
-        title={item.title}
+        title={item.title || item.name}
         imgUrl={item.poster_path}
         id={item.id}
-        type={type}
+        type={item.media_type || type}
         rating={item.vote_average}
       />
     );
