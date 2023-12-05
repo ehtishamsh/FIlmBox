@@ -1,7 +1,8 @@
 import React from "react";
 import Cards from "./Cards";
+import CardsSkeletons from "./Skeletons/CardSkeletons";
 
-function Content({ data, type }) {
+function Content({ data, type, isLoading }) {
   const createCards = data.map((item) => {
     return (
       <Cards
@@ -14,9 +15,13 @@ function Content({ data, type }) {
       />
     );
   });
+  const arr = [1, 2, 3, 4];
+  const getSkeletons = arr.map((item) => {
+    return <CardsSkeletons key={item} />;
+  });
   return (
-    <div className="grid grid-cols-[repeat(_4,auto)] pb-5 justify-between gap-y-7 max-xxsm:gap-x-[4px] max-md:grid-cols-[repeat(_3,auto)]  max-sm:grid-cols-[repeat(_2,auto)] ">
-      {createCards}
+    <div className="grid grid-cols-[repeat(_4,_minmax(_0px,_1fr))] pb-5 justify-between gap-y-7 max-xxsm:gap-x-[4px] max-md:grid-cols-[repeat(_3,1fr)]  max-sm:grid-cols-[repeat(_2,1fr)] ">
+      {isLoading ? getSkeletons : createCards}
     </div>
   );
 }

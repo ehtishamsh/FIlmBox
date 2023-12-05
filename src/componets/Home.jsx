@@ -9,13 +9,12 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios
-      .get(endpoints.popular)
-      .then((res) => {
-        setData(res.data.results);
-        setIsLoading(false);
-      })
-      .catch((err) => console.log("error 444"));
+    setTimeout(async () => {
+      const fetchData = await axios.get(endpoints.popular);
+      const getData = await fetchData.data.results;
+      setData(getData);
+      setIsLoading(false);
+    }, 5000);
   }, []);
   return (
     <>
@@ -37,7 +36,7 @@ function Home() {
             </button>
           </div>
         </div>
-        <Content data={data} type={"movies"} />
+        <Content data={data} type={"movies"} isLoading={isLoading} />
       </div>
       <div className="mt-8 px-28 flex flex-col max-sm:px-10 max-md:px-10 max-lg:px-16 py-6 bg-gradient-to-t from-[rgba(2,6,23,1)] via-[#040c2c] to-[rgba(2,6,23,1)]">
         <div className="flex items-center mb-8 gap-5 max-sm:flex-col mt-14  max-md:flex-col">
@@ -45,7 +44,7 @@ function Home() {
             Popular on Filmbox
           </h1>
         </div>
-        <Content data={data} type={"movies"} />
+        <Content data={data} type={"movies"} isLoading={isLoading} />
       </div>
     </>
   );
