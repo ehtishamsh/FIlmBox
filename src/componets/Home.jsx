@@ -6,14 +6,24 @@ import details from "./MovieServices";
 
 function Home() {
   const [recommended, setRecommended] = useState("all");
-  const endpoints = details(0, recommended);
+  const endpoints = details("", recommended);
   function handleClick(event) {
     setRecommended(event.target.name);
   }
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingPop, setIsLoadingPop] = useState(true);
 
   const [trendData, setTrendData] = useState([]);
   const [data, setData] = useState([]);
+  useEffect(() => {
+    setIsLoadingPop(true);
+    setTimeout(async () => {
+      const fetchData = await axios.get(endpoints.popular);
+      const getData = await fetchData.data.results;
+      setData(getData);
+      setIsLoadingPop(false);
+    }, 8000);
+  }, []);
   useEffect(() => {
     setIsLoading(true);
     setTimeout(async () => {
@@ -21,23 +31,13 @@ function Home() {
       const getData = await fetchData.data.results;
       setTrendData(getData);
       setIsLoading(false);
-    }, 5000);
+    }, 4000);
   }, [recommended]);
-  console.log(trendData);
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(async () => {
-      const fetchData = await axios.get(endpoints.popular);
-      const getData = await fetchData.data.results;
-      setData(getData);
-      setIsLoading(false);
-    }, 5000);
-  }, []);
 
   return (
     <>
       <Hero />
-      <div className="mt-8 px-28 flex flex-col max-sm:px-10 max-md:px-10 max-lg:px-16 py-6 bg-gradient-to-t from-[rgba(2,6,23,1)] via-[#040c2c] to-[rgba(2,6,23,1)]">
+      <div className="mt-8 px-28 flex flex-col max-md:px-6 max-lg:px-16 py-6 bg-gradient-to-t from-[rgba(2,6,23,1)] via-[#040c2c] to-[rgba(2,6,23,1)]">
         <div className="flex items-center mb-8 gap-5 max-sm:flex-col  max-md:flex-col">
           <h1 className="text-3xl font-bold text-slate-200 max-sm:text-xl  max-md:text-2xl">
             Recommended
@@ -80,7 +80,7 @@ function Home() {
             Popular on Filmbox
           </h1>
         </div>
-        <Content data={data} isLoading={isLoading} />
+        <Content data={data} isLoading={isLoadingPop} />
       </div>
     </>
   );

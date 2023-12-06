@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useNavigate,
   Navigate,
 } from "react-router-dom";
 import TvAndMovies from "./componets/TvAndMovies";
@@ -24,7 +23,8 @@ function App() {
             <Route path="tv" element={<TvAndMovies />} />
             <Route path="movie/:id" element={<Details />} />
             <Route path="tv/:id" element={<Details />} />
-            <Route path="*" element={<Navigate to="" />} />
+            <Route path="/404" element={<ErrorPage />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Route>
         </Routes>
       </Router>

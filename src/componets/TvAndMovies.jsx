@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Content from "./Content";
 import SearchInput from "./SearchInput";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import details from "./MovieServices";
 import axios from "axios";
 
 export default function () {
-  const loc = useLocation();
-  const [type, setType] = useState(loc.pathname);
+  const loc = useLocation().pathname;
   const endpoints = details();
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   useEffect(() => {
     setIsLoading(true);
     setTimeout(async () => {
-      try {
-        const fetchData = await axios.get(
-          `${type === "/tv" ? endpoints.popularTv : endpoints.popular}`
-        );
-        const getData = await fetchData.data.results;
-        setData(getData);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        Navigate("/error");
-      }
-    }, 5000);
-  }, [type]);
+      const fetchData = await axios.get(
+        `${loc === "/tv" ? endpoints.popularTv : endpoints.popular}`
+      );
+      const getData = await fetchData.data.results;
+      setData(getData);
+      setIsLoading(false);
+    }, 3000);
+  }, [loc]);
   console.log(data);
   return (
     <div
@@ -37,14 +31,14 @@ export default function () {
         <p className="text-indigo-500 text-base flex flex-col">
           Filmbox
           <span className="text-slate-200 text-7xl font-bold">
-            {type === "/tv" ? "TV Shows" : "Movies"}
+            {loc === "/tv" ? "TV Shows" : "Movies"}
           </span>
         </p>
         <div className="max-md:w-full">
           <SearchInput />
         </div>
       </div>
-      <Content data={data} type={type} isLoading={isLoading} />
+      <Content data={data} type={loc} isLoading={isLoading} />
     </div>
   );
 }
