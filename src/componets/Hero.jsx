@@ -1,7 +1,7 @@
 import React from "react";
 import SearchInput from "./SearchInput";
 
-export default function Hero() {
+export default function Hero({ searchData, setsearch, loading }) {
   return (
     <div className="px-28 max-lg:px-16 relative flex items-center h-[700px] z-20 justify-between gap-14 max-sm:flex-col max-md:flex-col max-sm:h-full max-md:h-full max-sm:pt-36 max-md:pt-36 max-sm:px-8 max-md:px-8 max-sm:py-11 max-md:py-11">
       <div className="flex w-[40%] h-full flex-col text-slate-100 max-sm:w-full max-md:w-full justify-center max-sm:z-50 max-md:z-50">
@@ -13,7 +13,11 @@ export default function Hero() {
           Explore what I have watched and also feel free to make a suggestion.
           😉
         </p>
-        <SearchInput />
+        <SearchInput
+          setData={searchData}
+          setCheckSearch={setsearch}
+          loading={loading}
+        />
       </div>
       <div className="relative w-[60%] h-full   max-sm:w-full max-md:w-full  overflow-hidden max-sm:absolute max-sm:top-0 max-sm:left-0 max-md:absolute max-md:top-0 max-md:left-0 z-30 ">
         <img

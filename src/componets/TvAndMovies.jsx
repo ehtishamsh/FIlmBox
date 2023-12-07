@@ -5,12 +5,17 @@ import { useLocation } from "react-router-dom";
 import details from "./MovieServices";
 import axios from "axios";
 
-export default function () {
+export default function TvAndMovies() {
+  const [searchData, setSearchData] = useState([]);
+  const [checkSearch, setCheckSearch] = useState(false);
+  const [searchLoading, setsearchLoading] = useState(true);
   const loc = useLocation().pathname;
   const endpoints = details();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
+
   useEffect(() => {
+    setCheckSearch(false);
     setIsLoading(true);
     setTimeout(async () => {
       const fetchData = await axios.get(
@@ -35,10 +40,18 @@ export default function () {
           </span>
         </p>
         <div className="max-md:w-full">
-          <SearchInput />
+          <SearchInput
+            loading={setsearchLoading}
+            setData={setSearchData}
+            setCheckSearch={setCheckSearch}
+          />
         </div>
       </div>
-      <Content data={data} type={loc} isLoading={isLoading} />
+      {!checkSearch ? (
+        <Content data={data} type={loc} isLoading={isLoading} />
+      ) : (
+        <Content data={searchData} type={loc} isLoading={searchLoading} />
+      )}
     </div>
   );
 }
