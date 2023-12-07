@@ -9,9 +9,10 @@ export default function Hero({ searchData, setsearch, loading }) {
           FILMBOX
         </h1>
         <p className="text-base text-slate-400 text-left max-sm:text-center max-md:text-center">
-          List of movies and TV Shows, I, Pramod Poudel have watched till date.
-          Explore what I have watched and also feel free to make a suggestion.
-          😉
+          In Filmbox, you can browse a list of movies and TV shows, viewing
+          their details. Additionally, you have the option to search for
+          specific movies and TV shows. Explore and discover the content you
+          want to learn more about. 😉
         </p>
         <SearchInput
           setData={searchData}
