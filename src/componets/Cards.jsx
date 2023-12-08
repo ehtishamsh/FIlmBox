@@ -5,9 +5,9 @@ function Cards({ type, id, rating, imgUrl, title }) {
   return (
     <Link
       to={`${type}/${id}`}
-      className="flex justify-center items-center w-full h-full"
+      className="flex justify-center items-center w-full h-full transition-all duration-200"
     >
-      <div className="flex flex-col relative gap-5 p-2 rounded-xl h-full bg-[rgba(146,146,146,0.12)] w-11/12 max-xxsm:w-full max-xl:pb-2 backdrop-blur-sm">
+      <div className="flex flex-col relative gap-5 p-2 rounded-xl h-full transition-all duration-200 bg-[rgba(146,146,146,0.12)] w-11/12 max-xxsm:w-full max-xl:pb-2 backdrop-blur-sm">
         <div className="flex  items-center z-50 absolute top-0 left-0 py-1 px-2 mx-[18px] mt-[16px] bg-[rgba(0,0,0,0.65)] rounded-lg gap-1 backdrop-blur-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,11 @@ function Cards({ type, id, rating, imgUrl, title }) {
         </div>
         <div className="overflow-hidden rounded-lg  w-full">
           <img
-            src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
+            src={
+              imgUrl !== null
+                ? `https://image.tmdb.org/t/p/w500${imgUrl}`
+                : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+            }
             alt=""
             className="object-cover bg-cover  w-full h-[25rem] max-sm:h-[16rem] hover:transform hover:scale-110 transition-all duration-500"
           />

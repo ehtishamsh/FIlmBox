@@ -11,6 +11,7 @@ import TvAndMovies from "./componets/TvAndMovies";
 import Layout from "./Layout";
 import Details from "./componets/Details";
 import ErrorPage from "./componets/ErrorPage";
+import Search from "./componets/Search";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="tv" element={<TvAndMovies />} />
             <Route path="movie/:id" element={<Details />} />
             <Route path="tv/:id" element={<Details />} />
+            <Route path="search/:keyword" element={<Search />} />
             <Route path="/404" element={<ErrorPage />} />
             <Route path="*" element={<Navigate to="/404" replace />} />
           </Route>

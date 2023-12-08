@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Hero from "./Hero";
-import Content from "./Content";
 import axios from "axios";
 import details from "./MovieServices";
 import Recommended from "./Recommended";
@@ -9,9 +8,6 @@ import Popular from "./Popular";
 function Home() {
   const [recommended, setRecommended] = useState("all");
 
-  const [searchData, setSearchData] = useState([]);
-  const [checkSearch, setCheckSearch] = useState(false);
-  const [searchLoading, setsearchLoading] = useState(true);
   const endpoints = details("", recommended);
   function handleClick(event) {
     setRecommended(event.target.name);
@@ -46,32 +42,17 @@ function Home() {
       setIsLoading(false);
     }, 4000);
   }, [recommended]);
-  console.log(searchData);
   return (
     <>
-      <Hero
-        searchData={setSearchData}
-        setsearch={setCheckSearch}
-        loading={setsearchLoading}
+      <Hero />
+
+      <Recommended
+        recommended={recommended}
+        handleClick={handleClick}
+        isLoading={isLoading}
+        trendData={trendData}
       />
-      {checkSearch === false ? (
-        <>
-          <Recommended
-            recommended={recommended}
-            handleClick={handleClick}
-            isLoading={isLoading}
-            trendData={trendData}
-          />
-          <Popular data={data} isLoadingPop={isLoadingPop} />
-        </>
-      ) : (
-        <div className="mt-8 px-28 flex flex-col max-md:px-6 max-lg:px-16 py-6 bg-gradient-to-t from-[rgba(2,6,23,1)] via-[#040c2c] to-[rgba(2,6,23,1)]">
-          <h1 className="text-slate-400 mb-7 text-2xl font-bold">
-            Result {`(${searchData.length})`}
-          </h1>
-          <Content data={searchData} isLoading={searchLoading} />
-        </div>
-      )}
+      <Popular data={data} isLoadingPop={isLoadingPop} />
     </>
   );
 }

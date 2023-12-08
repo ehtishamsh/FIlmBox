@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import details from "./MovieServices";
 import { useLocation } from "react-router-dom";
 
-function SearchInput({ setData, setCheckSearch, loading }) {
+function SearchInput({ setData, setCheckSearch, loading, page }) {
   const [search, setSearch] = useState("");
   const [formData, setFormData] = useState("");
+  const endpoints = details(search, "", page);
   const location = useLocation().pathname;
   function handleInput(e) {
     setSearch(e.target.value);
@@ -22,30 +23,22 @@ function SearchInput({ setData, setCheckSearch, loading }) {
     }
   }
   useEffect(() => {
+    setSearch("");
+  }, [location]);
+  useEffect(() => {
+    loading(true);
     if (formData !== "") {
-      const endpoints = details(search, "");
       setTimeout(async () => {
         const fetchData = await axios.get(
-          location === "/"
-            ? endpoints.searchAll
-            : location === "/tv"
-            ? endpoints.searchTV
-            : endpoints.searchMovie
+          location === "/tv" ? endpoints.searchTV : endpoints.searchMovie
         );
-        const getData = await fetchData.data.results;
+        const getData = await fetchData.data;
 
-        const filterData = getData?.filter(
-          (item) =>
-            item.backdrop_path !== null &&
-            item.media_type !== "person" &&
-            item.poster_path !== null
-        );
-        setData(filterData || []);
-        setSearch("");
+        setData(getData || []);
         loading(false);
       }, 4000);
     }
-  }, [formData]);
+  }, [formData, page]);
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="input-group mt-6">
       <input
