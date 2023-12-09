@@ -48,7 +48,7 @@ export default function TvAndMovies() {
   console.log(searchData);
   return (
     <div
-      className=" pt-52 px-28 flex flex-col max-md:px-6 max-lg:px-16 py-6 object-cover"
+      className=" pt-52 px-28 flex flex-col max-md:px-5 max-lg:px-16 py-6 object-cover"
       style={{ backgroundImage: `url("/Background.png")` }}
     >
       <div className="flex flex-col gap-4 w-1/2 max-md:w-full text-slate-200 max-md:text-center">
