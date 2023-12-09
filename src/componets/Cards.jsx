@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Cards({ type, id, rating, imgUrl, title }) {
+  console.log(type);
   return (
     <Link
-      to={`${type}/${id}`}
+      to={`/${type}/${id}`}
       className="flex justify-center items-center w-full h-full transition-all duration-200"
     >
       <div className="flex flex-col relative gap-5 p-2 rounded-xl h-full transition-all duration-200 bg-[rgba(146,146,146,0.12)] w-11/12 max-xxsm:w-full max-xl:pb-2 backdrop-blur-sm">
