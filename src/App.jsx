@@ -25,6 +25,8 @@ function App() {
             <Route path="movie/:id" element={<Details />} />
             <Route path="tv/:id" element={<Details />} />
             <Route path="search/:keyword" element={<Search />} />
+            <Route path="/404" element={<ErrorPage />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Route>
         </Routes>
       </Router>
