@@ -84,6 +84,9 @@ export default function DetailPageSkeleton() {
               </span>
             </span>
           </p>
+          <button className=" px-4 py-2 text-transparent bg-gray-600 rounded-full">
+            Watch Trailer
+          </button>
         </div>
       </div>
     </>

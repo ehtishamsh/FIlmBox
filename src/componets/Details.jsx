@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import details from "./MovieServices";
 import DetailPageSkeleton from "./Skeletons/DetailPageSkeleton";
+import ReactPlayer from "react-player/youtube";
 
 export default function Details() {
   const { id } = useParams();
@@ -10,6 +11,10 @@ export default function Details() {
   const [type, setType] = useState(loc.pathname.includes("tv"));
   const endpoints = details(id);
   const [isLoading, setIsLoading] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+  function handlePopUp(event) {
+    event.target.name === "play" ? setPopUp(true) : setPopUp(false);
+  }
   const [data, setData] = useState();
   useEffect(() => {
     setIsLoading(true);
@@ -22,9 +27,10 @@ export default function Details() {
       setIsLoading(false);
     }, [4000]);
   }, []);
+  console.log(data);
   return (
     <div
-      className="w-full h-full flex flex-col gap-8 pt-36 pb-28 bg-cover object-cover overflow-x-hidden px-28 max-lg:px-16 max-md:px-8 max-sm:px-8"
+      className="w-full h-full flex flex-col gap-8 pt-36 pb-28 relative bg-cover object-cover overflow-x-hidden px-28 max-lg:px-16 max-md:px-8 max-sm:px-8"
       style={{ backgroundImage: `url("/Background.png")` }}
     >
       {isLoading === false ? (
@@ -111,6 +117,7 @@ export default function Details() {
                   {data && (data.release_date || data.first_air_date)}
                 </span>
               </p>
+
               {data && data.runtime ? (
                 <p className="flex flex-col text-slate-500 text-base max-md:text-sm">
                   Run time
@@ -142,11 +149,44 @@ export default function Details() {
                     })}
                 </span>
               </p>
+              {data && data.videos.results.length > 0 && (
+                <button
+                  onClick={(e) => handlePopUp(e)}
+                  name="play"
+                  className=" px-4 py-2 bg-indigo-600 text-white rounded-full"
+                >
+                  Watch Trailer
+                </button>
+              )}
             </div>
           </div>
         </>
       ) : (
         <DetailPageSkeleton />
+      )}
+      {data && data.videos.results.length > 0 && popUp && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-[9999] flex items-center justify-center">
+          <div className="relative w-full max-w-screen-md">
+            <button
+              onClick={(e) => handlePopUp(e)}
+              name="close"
+              className="absolute -top-9 right-0 text-xl text-slate-300 z-[9999] [text-shadow:_0_2px_20px_rgb(0_0_0_/_100%)] font-bold cursor-pointer"
+            >
+              Close
+            </button>
+
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${
+                data && data.videos.results[0].key
+              }`}
+              controls={true}
+              playing={true}
+              muted={true}
+              width="100%"
+              className="bg-black overflow-hidden"
+            />
+          </div>
+        </div>
       )}
     </div>
   );
