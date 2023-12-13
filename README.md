@@ -25,14 +25,6 @@ Check out the live demo [here](https://stunning-bunny-36bc93.netlify.app/).
 ![Screenshot 2](https://github.com/ehtishamsh/FilmBox/blob/main/preview2.png)
 ![Screenshot 3](https://github.com/ehtishamsh/FilmBox/blob/main/preview3.png)
 ![Screenshot 4](https://github.com/ehtishamsh/FilmBox/blob/main/preview4.png)
-[![Filmbox Demo](demo-thumbnail.png)](demo-link)
-
-Check out the live demo [here](demo-link).
-
-## Screenshots
-
-![Screenshot 1](screenshot-1.png)
-![Screenshot 2](screenshot-2.png)
 
 ## Usage
 
